@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {compose, pipe} from "lodash/fp";
+// function sayHello(){
+//   return "Hello world!";
+// }
+// let fn = sayHello();
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// function greet (fn){
+//   console.log(fn());
+// }
+// function sayHello(){
+//   return function(){
+//     return "Hello world!";
+//   };
+// }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+let input = " javascript ";
+let output = "<div>" + input.trim() + "</div>";
+const trim = str => str.trim();
+const wrapInDiv = str => `<div>${str}</div>`;
+const toLowerCase = str => str.toLowerCase(); 
+
+const transform = compose(wrapInDiv, toLowerCase, trim);
+const transform2 = pipe(trim, toLowerCase, wrapInDiv);
+transform(input);
+transform2(input);
+
